@@ -20,6 +20,20 @@ def solution(m, patient_lst):
                 m -= 1
 
 
+def solution2(m, patient_lst):
+    from collections import deque
+    dq = deque((idx, val) for idx, val in enumerate(patient_lst))
+    cnt = 0
+    while True:
+        curr = dq.popleft()
+        if any(curr[1] < x[1] for x in dq):
+            dq.append(curr)
+        else:
+            cnt += 1
+            if curr[0] == m:
+                return cnt
+
+
 
 
 if __name__ == '__main__':
